@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>fr.univ-lirp</groupId>
+    <artifactId>lirp-parent</artifactId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>model2</artifactId>
+  <packaging>jar</packaging>
+  <name>model2</name>
+  <description>Second stage LIRP model: two-step optimisation over instances/</description>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.ibm.cplex</groupId>
+      <artifactId>cplex</artifactId>
+      <version>${cplex.version}</version>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/lib/cplex.jar</systemPath>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <excludes>
+            <!--
+              Teaching template: this file declares a second public class also named
+              "solveur2ndproblem", which collides with solveur2ndproblem.java. It was
+              never compiled in the original Eclipse project either (no matching
+              .class in bin/). Excluded so the module builds; rename the class to
+              solveur2ndproblemStudents if you want to build it alongside.
+            -->
+            <exclude>solveur2ndproblem-students.java</exclude>
+          </excludes>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <configuration>
+          <mainClass>${model2.mainClass}</mainClass>
+          <!-- Main2 resolves paths like "instances/" and "./log/" relative to the CWD -->
+          <workingDirectory>${project.basedir}</workingDirectory>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

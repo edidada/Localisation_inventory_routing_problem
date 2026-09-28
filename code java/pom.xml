@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>fr.univ-lirp</groupId>
+  <artifactId>lirp-parent</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <name>LIRP</name>
+  <description>Location Inventory Routing Problem - CPLEX models</description>
+
+  <modules>
+    <module>lirp</module>
+    <module>model2</module>
+  </modules>
+
+  <properties>
+    <!-- instance2.java and Instance.java are ISO-8859-1 with French accents, not UTF-8 -->
+    <project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <cplex.version>12.6.0.0</cplex.version>
+    <!-- Sources are still in the default package, so main classes are unqualified. -->
+    <lirp.mainClass>ResolutionMain</lirp.mainClass>
+    <model2.mainClass>Main2</model2.mainClass>
+  </properties>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>exec-maven-plugin</artifactId>
+          <version>3.1.0</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+</project>

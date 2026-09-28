@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>fr.univ-lirp</groupId>
+    <artifactId>lirp-parent</artifactId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>lirp</artifactId>
+  <packaging>jar</packaging>
+  <name>lirp</name>
+  <description>First stage LIRP model: resolution of the instances in instance/</description>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.ibm.cplex</groupId>
+      <artifactId>cplex</artifactId>
+      <version>${cplex.version}</version>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/lib/cplex.jar</systemPath>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <configuration>
+          <mainClass>${lirp.mainClass}</mainClass>
+          <!-- ResolutionMain resolves paths like "instance/" and "./log/" relative to the CWD -->
+          <workingDirectory>${project.basedir}</workingDirectory>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
